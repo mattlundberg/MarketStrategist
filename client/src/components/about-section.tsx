@@ -17,31 +17,44 @@ export default function AboutSection() {
             
             <div className="space-y-6 text-gray-600 leading-relaxed">
               <p>
-                With over 5 years of experience in digital marketing, I've helped 150+ businesses transform their social media presence into profitable revenue streams. My passion lies in creating authentic connections between brands and their audiences.
+                With over 5 years of hands-on digital marketing experience, I've helped businesses grow real revenue through intentional, relationship-based social media strategies. I specialize in helping brands connect with their audience, grow engaged communities, and drive consistent, measurable results across platforms like Instagram, TikTok, Facebook Groups, Pinterest, and email marketing.
               </p>
               <p>
-                I believe in data-driven strategies combined with creative storytelling. Every campaign I design is tailored to your unique brand voice and business objectives, ensuring maximum ROI and sustainable growth.
+                I've been professionally trained inside <span className="font-bold">Rachel Pedersen's 'The Clique'</span>, where I've gained expert-level strategy through ongoing mentorship, cutting-edge trainings, and collaboration with some of the best social media marketers in the industry.
               </p>
               <p>
-                When I'm not crafting the perfect social media strategy, you'll find me staying ahead of the latest platform updates and digital trends to keep my clients at the forefront of their industries.
+                I bring the perfect blend of <span className="font-bold">creative storytelling</span> and <span className="font-bold">data-driven strategy</span> to every campaign — designing content that's not only beautiful, but also built to convert.
+              </p>
+              <p>
+                When I'm not optimizing content calendars or reverse-engineering client goals, I'm soaking up the latest algorithm changes and trends so my clients can stay ahead of the curve — and the competition.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
-              <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-                <div className="text-3xl font-bold text-primary mb-2">15+</div>
-                <div className="text-sm text-gray-600">Certifications</div>
-              </div>
-              <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-                <div className="text-3xl font-bold text-primary mb-2">25+</div>
-                <div className="text-sm text-gray-600">Industries</div>
+            <div className="space-y-6">
+              <h3 className="text-2xl font-serif font-bold text-primary">What Sets Me Apart</h3>
+              <div className="grid gap-6">
+                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+                  <div className="text-lg font-semibold text-primary">Trained by Rachel Pedersen</div>
+                  <div className="text-gray-600">Member of Rachel Pedersen's elite social media mastermind</div>
+                </div>
+                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+                  <div className="text-lg font-semibold text-primary">Trusted by clients in 25+ industries</div>
+                </div>
+                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+                  <div className="text-lg font-semibold text-primary">Proven record of helping businesses grow</div>
+                  <div className="text-gray-600">Visibility, engagement & revenue</div>
+                </div>
+                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+                  <div className="text-lg font-semibold text-primary">Known for creative strategy</div>
+                  <div className="text-gray-600">Honest feedback, and results that feel aligned</div>
+                </div>
               </div>
             </div>
 
-            <button className="bg-accent text-white px-8 py-4 rounded-full hover:bg-accent/90 transition duration-300 font-semibold">
+            {/* <button className="bg-accent text-white px-8 py-4 rounded-full hover:bg-accent/90 transition duration-300 font-semibold">
               <FileDown className="inline w-5 h-5 mr-2" />
               Download My Resume
-            </button>
+            </button> */}
           </div>
 
           <div className="relative">

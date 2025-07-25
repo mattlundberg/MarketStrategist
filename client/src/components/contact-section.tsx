@@ -81,7 +81,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-primary">Email</div>
-                  <div className="text-gray-600">hello@emilielundberg.com</div>
+                  <div className="text-gray-600">lundberg.emilie@gmail.com</div>
                 </div>
               </div>
 
@@ -91,7 +91,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-primary">Phone</div>
-                  <div className="text-gray-600">+1 (555) 123-4567</div>
+                  <div className="text-gray-600">+1 (440) 371-7091</div>
                 </div>
               </div>
 
@@ -101,7 +101,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-primary">Response Time</div>
-                  <div className="text-gray-600">Within 24 hours</div>
+                  <div className="text-gray-600">Within 2 business days</div>
                 </div>
               </div>
             </div>
@@ -109,18 +109,18 @@ export default function ContactSection() {
             <div className="pt-8">
               <h4 className="font-semibold text-primary mb-4">Follow My Journey</h4>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
+                <a href="https://www.instagram.com/emiliessocialstrategy/" target="_blank" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
                   <SiInstagram className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
-                  <SiLinkedin className="w-5 h-5" />
+                <a href="https://www.linkedin.com/in/emilie-lundberg-52054b3a" target="_blank" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
+                  <SiLinkedin className="w-5 h-5"  />
                 </a>
-                <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
+                {/* <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
                   <SiFacebook className="w-5 h-5" />
                 </a>
                 <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary/90 transition duration-300">
                   <SiTiktok className="w-5 h-5" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

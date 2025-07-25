@@ -11,41 +11,47 @@ import { SiTiktok, SiPinterest } from "react-icons/si";
 const services = [
   {
     icon: Facebook,
-    title: "Facebook Marketing",
-    description: "Strategic Facebook campaigns and community building that drive engagement and conversions through targeted content and ads.",
-    features: ["Content Strategy", "Ad Campaign Management", "Community Engagement"]
+    title: "Facebook Group Growth",
+    statement: "Turn passive followers into a thriving community.",
+    description: "Community is the most underrated sales strategy. I help you grow and engage Facebook Groups that drive conversation, build trust, and generate consistent, warm leads — without ad spend.",
+    features: ["Growth & Engagement Strategy", "Conversion-Focused Content", "Launch Support + Offer Validation"]
+  },
+  {
+    icon: Users,
+    title: "Facebook Business Page", 
+    statement: "Turn Your Facebook Business Page Into a Sales Asset — Not Just a Social Placeholder",
+    description: "Most business owners have a Facebook Page “because they're supposed to” — but it's outdated, inconsistent, or completely inactive. That's a missed opportunity. \n\nI help you turn your Page into a trust-building, conversion-ready hub that supports your entire marketing funnel.",
+    features: ["Community Management", "Engagement Strategies", "Growth Tactics"]
   },
   {
     icon: Instagram,
     title: "Instagram Growth",
-    description: "Visual storytelling and aesthetic curation that builds authentic connections and drives business growth through Instagram.",
-    features: ["Visual Content Planning", "Stories & Reels Strategy", "Hashtag Optimization"]
+    statement: "Build a brand that converts with content that connects.",
+    description: "From scroll-stopping visuals to reels that actually drive traffic, I’ll help you build a magnetic Instagram presence designed for real growth and real revenue.",
+    features: ["Reels & Stories Strategy", "Content Planning + Execution", "Hashtag + Keyword Optimization"]
   },
   {
     icon: SiTiktok,
     title: "TikTok Strategy",
-    description: "Viral content creation and trend leveraging that amplifies your brand reach across TikTok's dynamic platform.",
-    features: ["Trend Analysis", "Viral Content Creation", "Algorithm Optimization"],
+    statement: "Go viral with intention.",
+    description: "Not just for Gen Z. I craft TikTok strategies that tap into trends while staying aligned with your brand — to grow your following and your client list.",
+    features: ["Trend Integration", "Viral Content Planning", "CTA-Focused Strategy"],
     isReactIcon: true
   },
   {
     icon: SiPinterest,
     title: "Pinterest Marketing",
-    description: "SEO-optimized Pinterest strategies that drive traffic and sales through strategic pin creation and board optimization.",
-    features: ["Pin Design & SEO", "Board Strategy", "Traffic Generation"],
+    statement: "Turn pins into passive traffic.",
+    description: " I design Pinterest strategies that drive long-term visibility, traffic, and discovery using smart SEO, consistent branding, and pin-worthy design.",
+    features: ["Pin Design + Optimization", "Board Strategy", "Searchable, Shareable Content"],
     isReactIcon: true
   },
   {
     icon: Mail,
     title: "Email Marketing",
-    description: "Nurturing email sequences and newsletters that convert subscribers into loyal customers through personalized messaging.",
-    features: ["Email Automation", "List Building", "Campaign Analytics"]
-  },
-  {
-    icon: Users,
-    title: "Facebook Groups",
-    description: "Community building and engagement strategies that foster brand loyalty and create valuable networking opportunities.",
-    features: ["Community Management", "Engagement Strategies", "Growth Tactics"]
+    statement: "From follower to forever client.",
+    description: "Turn clicks into conversions with emails that do more than land — they sell. I build nurturing sequences, list-building strategies, and launch flows that convert.",
+    features: ["Email Automation", "Nurture Sequences", "Launch & Promo Emails"]
   }
 ];
 
@@ -80,6 +86,9 @@ export default function ServicesSection() {
                 <h3 className="text-2xl font-serif font-semibold text-primary mb-4">
                   {service.title}
                 </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed font-bold">
+                  {service.statement}
+                </p>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {service.description}
                 </p>

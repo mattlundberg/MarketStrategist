@@ -40,16 +40,16 @@ export default function HeroSection() {
 
             <div className="flex items-center space-x-8 pt-8">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">150+</div>
+                <div className="text-2xl font-bold text-primary">13+</div>
                 <div className="text-sm text-gray-600">Happy Clients</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">$2M+</div>
+                <div className="text-2xl font-bold text-primary">3x ROI</div>
                 <div className="text-sm text-gray-600">Revenue Generated</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">5 Years</div>
-                <div className="text-sm text-gray-600">Experience</div>
+                <div className="text-2xl font-bold text-primary">5+</div>
+                <div className="text-sm text-gray-600">Years of Marketing Experience</div>
               </div>
             </div>
           </div>
