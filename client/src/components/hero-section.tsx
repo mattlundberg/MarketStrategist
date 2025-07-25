@@ -1,4 +1,5 @@
 import { Calendar, Download, TrendingUp } from "lucide-react";
+import emilieImage from "@/assets/images/emilie.jpg";
 
 export default function HeroSection() {
   const scrollToContact = () => {
@@ -56,7 +57,7 @@ export default function HeroSection() {
           
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=1000" 
+              src={emilieImage}
               alt="Professional female marketing consultant" 
               className="rounded-3xl shadow-2xl w-full max-w-lg mx-auto"
             />

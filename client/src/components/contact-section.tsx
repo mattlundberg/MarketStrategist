@@ -1,56 +1,14 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, Calendar, Send } from "lucide-react";
 import { SiInstagram, SiLinkedin, SiFacebook, SiTiktok } from "react-icons/si";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 export default function ContactSection() {
-  const { toast } = useToast();
-  
-  const form = useForm<InsertContact>({
-    resolver: zodResolver(insertContactSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      businessName: "",
-      services: "",
-      message: "",
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: InsertContact) => {
-      const response = await apiRequest("POST", "/api/contact", data);
-      return response.json();
-    },
-    onSuccess: (data) => {
-      toast({
-        title: "Message sent successfully!",
-        description: data.message,
-      });
-      form.reset();
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Error sending message",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: InsertContact) => {
-    contactMutation.mutate(data);
+  const handleSubmit = (e: React.FormEvent) => {
+    setIsSubmitting(true);
+    // Netlify will handle the form submission automatically
+    // The form will be processed by Netlify's form handling service
   };
 
   return (
@@ -126,142 +84,124 @@ export default function ContactSection() {
           </div>
 
           <div className="bg-white p-8 rounded-3xl shadow-lg">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {/* Netlify form detection */}
+              <input type="hidden" name="form-name" value="contact" />
+              
+              {/* Honeypot field to prevent spam */}
+              <div className="hidden">
+                <input name="bot-field" />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
                     name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-semibold text-gray-700">First Name *</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Your first name" 
-                            className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-semibold text-gray-700">Last Name *</FormLabel>
-                        <FormControl>
-                          <Input 
-                            placeholder="Your last name" 
-                            className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20" 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    required
+                    placeholder="Your first name"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200"
                   />
                 </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                    placeholder="Your last name"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200"
+                  />
+                </div>
+              </div>
 
-                <FormField
-                  control={form.control}
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
                   name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-semibold text-gray-700">Email Address *</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email"
-                          placeholder="your@email.com" 
-                          className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  required
+                  placeholder="your@email.com"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200"
                 />
+              </div>
 
-                <FormField
-                  control={form.control}
+              <div>
+                <label htmlFor="businessName" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Business Name
+                </label>
+                <input
+                  type="text"
+                  id="businessName"
                   name="businessName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-semibold text-gray-700">Business Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your business name" 
-                          className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  placeholder="Your business name"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200"
                 />
+              </div>
 
-                <FormField
-                  control={form.control}
+              <div>
+                <label htmlFor="services" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Services Interested In
+                </label>
+                <select
+                  id="services"
                   name="services"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-semibold text-gray-700">Services Interested In</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20">
-                            <SelectValue placeholder="Select services you're interested in" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="instagram">Instagram Marketing</SelectItem>
-                          <SelectItem value="facebook">Facebook Marketing</SelectItem>
-                          <SelectItem value="tiktok">TikTok Strategy</SelectItem>
-                          <SelectItem value="pinterest">Pinterest Marketing</SelectItem>
-                          <SelectItem value="email">Email Marketing</SelectItem>
-                          <SelectItem value="facebook-groups">Facebook Groups</SelectItem>
-                          <SelectItem value="full-package">Full Social Media Package</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-sm font-semibold text-gray-700">Tell Me About Your Goals</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          rows={4}
-                          placeholder="Share your current challenges and what you'd like to achieve with social media marketing..." 
-                          className="rounded-xl border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button 
-                  type="submit" 
-                  disabled={contactMutation.isPending}
-                  className="w-full bg-primary text-white py-4 rounded-xl hover:bg-primary/90 transition duration-300 font-semibold text-lg"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  {contactMutation.isPending ? "Sending..." : "Send My Message"}
-                </Button>
+                  <option value="">Select services you're interested in</option>
+                  <option value="instagram">Instagram Marketing</option>
+                  <option value="facebook">Facebook Marketing</option>
+                  <option value="tiktok">TikTok Strategy</option>
+                  <option value="pinterest">Pinterest Marketing</option>
+                  <option value="email">Email Marketing</option>
+                  <option value="facebook-groups">Facebook Groups</option>
+                  <option value="full-package">Full Social Media Package</option>
+                </select>
+              </div>
 
-                <p className="text-sm text-gray-600 text-center">
-                  By submitting this form, you agree to receive marketing emails. You can unsubscribe at any time.
-                </p>
-              </form>
-            </Form>
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Tell Me About Your Goals
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  placeholder="Share your current challenges and what you'd like to achieve with social media marketing..."
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-200 resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-white py-4 rounded-xl hover:bg-primary/90 transition duration-300 font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send className="inline w-5 h-5 mr-2" />
+                {isSubmitting ? "Sending..." : "Send My Message"}
+              </button>
+
+              <p className="text-sm text-gray-600 text-center">
+                By submitting this form, you agree to receive marketing emails. You can unsubscribe at any time.
+              </p>
+            </form>
           </div>
         </div>
       </div>

@@ -40,14 +40,6 @@ export default function AboutSection() {
                 <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
                   <div className="text-lg font-semibold text-primary">Trusted by clients in 25+ industries</div>
                 </div>
-                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-                  <div className="text-lg font-semibold text-primary">Proven record of helping businesses grow</div>
-                  <div className="text-gray-600">Visibility, engagement & revenue</div>
-                </div>
-                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-                  <div className="text-lg font-semibold text-primary">Known for creative strategy</div>
-                  <div className="text-gray-600">Honest feedback, and results that feel aligned</div>
-                </div>
               </div>
             </div>
 
