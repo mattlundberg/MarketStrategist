@@ -181,6 +181,7 @@ export default function ContactSection() {
               data-netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="space-y-6"
+              netlify
             >
               {/* Netlify form detection */}
               <input type="hidden" name="form-name" value="contact" />
