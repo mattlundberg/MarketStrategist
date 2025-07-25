@@ -1,14 +1,104 @@
 import { useState } from "react";
-import { Mail, Phone, Calendar, Send } from "lucide-react";
+import { Mail, Phone, Calendar, Send, X, CheckCircle, AlertCircle } from "lucide-react";
 import { SiInstagram, SiLinkedin, SiFacebook, SiTiktok } from "react-icons/si";
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  type: 'success' | 'error';
+  message: string;
+}
+
+function Modal({ isOpen, onClose, type, message }: ModalProps) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            {type === 'success' ? (
+              <CheckCircle className="w-8 h-8 text-green-500" />
+            ) : (
+              <AlertCircle className="w-8 h-8 text-red-500" />
+            )}
+            <h3 className="text-xl font-semibold text-primary">
+              {type === 'success' ? 'Message Sent!' : 'Error Occurred'}
+            </h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition duration-200"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        
+        <p className="text-gray-600 mb-6 leading-relaxed">
+          {message}
+        </p>
+        
+        <button
+          onClick={onClose}
+          className="w-full bg-primary text-white py-3 rounded-xl hover:bg-primary/90 transition duration-300 font-semibold"
+        >
+          {type === 'success' ? 'Great!' : 'Try Again'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean;
+    type: 'success' | 'error';
+    message: string;
+  }>({
+    isOpen: false,
+    type: 'success',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsSubmitting(true);
-    // Netlify will handle the form submission automatically
-    // The form will be processed by Netlify's form handling service
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      
+      // Submit to Netlify
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setModalState({
+          isOpen: true,
+          type: 'success',
+          message: 'Thank you for your message! I\'ll get back to you within 2 business days. I\'m excited to help you transform your social media strategy!'
+        });
+        // Reset the form
+        e.currentTarget.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      setModalState({
+        isOpen: true,
+        type: 'error',
+        message: 'Sorry, there was an error sending your message. Please try again or contact me directly at lundberg.emilie@gmail.com'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeModal = () => {
+    setModalState(prev => ({ ...prev, isOpen: false }));
   };
 
   return (
@@ -205,6 +295,14 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        type={modalState.type}
+        message={modalState.message}
+      />
     </section>
   );
 }
